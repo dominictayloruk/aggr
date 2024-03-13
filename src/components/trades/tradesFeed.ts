@@ -320,10 +320,10 @@ export default class TradesFeed {
     ${pairName}
     ${
       this.showPrices
-        ? `<div class="trade__price">${formatMarketPrice(
+        ? `<div class="trade__price">${priceSlippage}${formatMarketPrice(
             trade.price,
             marketKey
-          )}${priceSlippage}</div>`
+          )}</div>`
         : ''
     }
     <div class="trade__amount">
@@ -335,7 +335,7 @@ export default class TradesFeed {
       </span>
       <span class="trade__amount__base">
         <span class="icon-base"></span>
-        <span>${(trade.size)}</span>
+        <span>${Math.round(trade.size * 1e6) / 1e6}</span>
       </span>
     </div>
     <div class="trade__time ${timestampClass}" data-timestamp="${trade.timestamp.toString()}">${timestampText}</div>
